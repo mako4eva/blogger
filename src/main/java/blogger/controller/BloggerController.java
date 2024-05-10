@@ -67,10 +67,12 @@ public class BloggerController {
     
 	@PutMapping("/post/{postId}")
 	public ResponseEntity<String> updatePost(@PathVariable Long postId, @RequestBody PostData postData) {
+		String title = bloggerService.findPostById(postId).getPostTitle();
 		postData.setPostId(postId);
+		postData.setUser(bloggerService.findPostById(postId).getUser());
 		log.info("Received PUT request for updating post ID={} to {}", postId, postData);
 		bloggerService.savePost(postData);
-		return ResponseEntity.status(HttpStatus.CREATED).body("Post \"" + postData.getPostTitle() + "\" has been updated.");
+		return ResponseEntity.status(HttpStatus.CREATED).body("Post \"" + title + "\" has been updated.");
 
 	}
 
