@@ -1,0 +1,9 @@
+spring:
+   datasource:
+      username: blogger
+      password: blogger
+      url: jdbc:mysql://localhost:3307/blogger
+   jpa:
+      hibernate:
+         ddl-auto: update
+      show-sql: true
